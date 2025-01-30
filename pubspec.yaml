@@ -10,15 +10,20 @@ dependencies:
   build_runner: ^2.4.14
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.0.0
+  freezed_annotation: ^2.4.4
   get_it: ^8.0.3
   injectable: ^2.5.0
   intl: ^0.20.2
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_lints: ^5.0.0
   injectable_generator: ^2.7.0
   flutter_test:
     sdk: flutter
+  freezed: ^2.5.8
+  json_serializable: ^6.9.3
 
 flutter:
   uses-material-design: true
