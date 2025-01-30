@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/application/auth/sign_in%20_form/sign_in_form_bloc.dart';
 import 'package:todo_app/presentation/screens/signup_screen/signup_screen.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -16,6 +18,11 @@ class SignInScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              onChanged: (value) {
+                context
+                    .read<SignInFormBloc>()
+                    .add(SignInFormEvent.emailChanged(value));
+              },
               decoration: InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(),
@@ -23,6 +30,11 @@ class SignInScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             TextField(
+              onChanged: (value) {
+                context
+                    .read<SignInFormBloc>()
+                    .add(SignInFormEvent.passwordChanged(value));
+              },
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -32,7 +44,9 @@ class SignInScreen extends StatelessWidget {
             SizedBox(height: 24.0),
             ElevatedButton(
               onPressed: () {
-                // Implement sign-in logic
+                context
+                    .read<SignInFormBloc>()
+                    .add(SignInFormEvent.signInButtonPressed());
               },
               child: Text('Sign In'),
             ),
