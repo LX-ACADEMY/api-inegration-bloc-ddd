@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:todo_app/domain/auth/credential.dart';
+import 'package:todo_app/domain/auth/sign_in_credencial/credential.dart';
 
 part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
@@ -30,11 +30,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             ),
           );
         },
-        signInButtonPressed: (e) {
-          print(
-            state.toString(),
-          );
-        },
+        signInButtonPressed: (e) {},
       );
     });
   }

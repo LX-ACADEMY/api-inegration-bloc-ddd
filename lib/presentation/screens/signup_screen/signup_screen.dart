@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/application/auth/sign_up_form/bloc/sign_up_form_bloc.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -15,6 +17,11 @@ class SignUpScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              onChanged: (value) {
+                context
+                    .read<SignUpFormBloc>()
+                    .add(SignUpFormEvent.nameChanged(value));
+              },
               decoration: InputDecoration(
                 labelText: 'Name',
                 border: OutlineInputBorder(),
@@ -22,6 +29,11 @@ class SignUpScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             TextField(
+              onChanged: (value) {
+                context
+                    .read<SignUpFormBloc>()
+                    .add(SignUpFormEvent.emailChanged(value));
+              },
               decoration: InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(),
@@ -29,6 +41,11 @@ class SignUpScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             TextField(
+              onChanged: (value) {
+                context
+                    .read<SignUpFormBloc>()
+                    .add(SignUpFormEvent.passwordChanged(value));
+              },
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -38,7 +55,9 @@ class SignUpScreen extends StatelessWidget {
             SizedBox(height: 24.0),
             ElevatedButton(
               onPressed: () {
-                // Implement sign-up logic
+                context
+                    .read<SignUpFormBloc>()
+                    .add(SignUpFormEvent.signUpButtonPressed());
               },
               child: Text('Sign Up'),
             ),
