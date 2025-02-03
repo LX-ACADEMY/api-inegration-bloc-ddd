@@ -670,6 +670,9 @@ abstract class _SignUpButtonPressed implements SignUpFormEvent {
 mixin _$SignUpFormState {
   bool get isloading => throw _privateConstructorUsedError;
   SignUpCredencial get signUpCredencial => throw _privateConstructorUsedError;
+  TokenModel? get authToken => throw _privateConstructorUsedError;
+  Option<Either<AuthFailure, TokenModel>> get failureOrSuccessOption =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of SignUpFormState
   /// with the given fields replaced by the non-null parameter values.
@@ -684,9 +687,14 @@ abstract class $SignUpFormStateCopyWith<$Res> {
           SignUpFormState value, $Res Function(SignUpFormState) then) =
       _$SignUpFormStateCopyWithImpl<$Res, SignUpFormState>;
   @useResult
-  $Res call({bool isloading, SignUpCredencial signUpCredencial});
+  $Res call(
+      {bool isloading,
+      SignUpCredencial signUpCredencial,
+      TokenModel? authToken,
+      Option<Either<AuthFailure, TokenModel>> failureOrSuccessOption});
 
   $SignUpCredencialCopyWith<$Res> get signUpCredencial;
+  $TokenModelCopyWith<$Res>? get authToken;
 }
 
 /// @nodoc
@@ -706,6 +714,8 @@ class _$SignUpFormStateCopyWithImpl<$Res, $Val extends SignUpFormState>
   $Res call({
     Object? isloading = null,
     Object? signUpCredencial = null,
+    Object? authToken = freezed,
+    Object? failureOrSuccessOption = null,
   }) {
     return _then(_value.copyWith(
       isloading: null == isloading
@@ -716,6 +726,14 @@ class _$SignUpFormStateCopyWithImpl<$Res, $Val extends SignUpFormState>
           ? _value.signUpCredencial
           : signUpCredencial // ignore: cast_nullable_to_non_nullable
               as SignUpCredencial,
+      authToken: freezed == authToken
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as TokenModel?,
+      failureOrSuccessOption: null == failureOrSuccessOption
+          ? _value.failureOrSuccessOption
+          : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, TokenModel>>,
     ) as $Val);
   }
 
@@ -728,6 +746,20 @@ class _$SignUpFormStateCopyWithImpl<$Res, $Val extends SignUpFormState>
       return _then(_value.copyWith(signUpCredencial: value) as $Val);
     });
   }
+
+  /// Create a copy of SignUpFormState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TokenModelCopyWith<$Res>? get authToken {
+    if (_value.authToken == null) {
+      return null;
+    }
+
+    return $TokenModelCopyWith<$Res>(_value.authToken!, (value) {
+      return _then(_value.copyWith(authToken: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -738,10 +770,16 @@ abstract class _$$SignUpFormStateImplCopyWith<$Res>
       __$$SignUpFormStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isloading, SignUpCredencial signUpCredencial});
+  $Res call(
+      {bool isloading,
+      SignUpCredencial signUpCredencial,
+      TokenModel? authToken,
+      Option<Either<AuthFailure, TokenModel>> failureOrSuccessOption});
 
   @override
   $SignUpCredencialCopyWith<$Res> get signUpCredencial;
+  @override
+  $TokenModelCopyWith<$Res>? get authToken;
 }
 
 /// @nodoc
@@ -759,6 +797,8 @@ class __$$SignUpFormStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isloading = null,
     Object? signUpCredencial = null,
+    Object? authToken = freezed,
+    Object? failureOrSuccessOption = null,
   }) {
     return _then(_$SignUpFormStateImpl(
       isloading: null == isloading
@@ -769,6 +809,14 @@ class __$$SignUpFormStateImplCopyWithImpl<$Res>
           ? _value.signUpCredencial
           : signUpCredencial // ignore: cast_nullable_to_non_nullable
               as SignUpCredencial,
+      authToken: freezed == authToken
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as TokenModel?,
+      failureOrSuccessOption: null == failureOrSuccessOption
+          ? _value.failureOrSuccessOption
+          : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, TokenModel>>,
     ));
   }
 }
@@ -777,16 +825,23 @@ class __$$SignUpFormStateImplCopyWithImpl<$Res>
 
 class _$SignUpFormStateImpl implements _SignUpFormState {
   const _$SignUpFormStateImpl(
-      {required this.isloading, required this.signUpCredencial});
+      {required this.isloading,
+      required this.signUpCredencial,
+      required this.authToken,
+      required this.failureOrSuccessOption});
 
   @override
   final bool isloading;
   @override
   final SignUpCredencial signUpCredencial;
+  @override
+  final TokenModel? authToken;
+  @override
+  final Option<Either<AuthFailure, TokenModel>> failureOrSuccessOption;
 
   @override
   String toString() {
-    return 'SignUpFormState(isloading: $isloading, signUpCredencial: $signUpCredencial)';
+    return 'SignUpFormState(isloading: $isloading, signUpCredencial: $signUpCredencial, authToken: $authToken, failureOrSuccessOption: $failureOrSuccessOption)';
   }
 
   @override
@@ -797,11 +852,16 @@ class _$SignUpFormStateImpl implements _SignUpFormState {
             (identical(other.isloading, isloading) ||
                 other.isloading == isloading) &&
             (identical(other.signUpCredencial, signUpCredencial) ||
-                other.signUpCredencial == signUpCredencial));
+                other.signUpCredencial == signUpCredencial) &&
+            (identical(other.authToken, authToken) ||
+                other.authToken == authToken) &&
+            (identical(other.failureOrSuccessOption, failureOrSuccessOption) ||
+                other.failureOrSuccessOption == failureOrSuccessOption));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isloading, signUpCredencial);
+  int get hashCode => Object.hash(runtimeType, isloading, signUpCredencial,
+      authToken, failureOrSuccessOption);
 
   /// Create a copy of SignUpFormState
   /// with the given fields replaced by the non-null parameter values.
@@ -815,14 +875,20 @@ class _$SignUpFormStateImpl implements _SignUpFormState {
 
 abstract class _SignUpFormState implements SignUpFormState {
   const factory _SignUpFormState(
-          {required final bool isloading,
-          required final SignUpCredencial signUpCredencial}) =
-      _$SignUpFormStateImpl;
+      {required final bool isloading,
+      required final SignUpCredencial signUpCredencial,
+      required final TokenModel? authToken,
+      required final Option<Either<AuthFailure, TokenModel>>
+          failureOrSuccessOption}) = _$SignUpFormStateImpl;
 
   @override
   bool get isloading;
   @override
   SignUpCredencial get signUpCredencial;
+  @override
+  TokenModel? get authToken;
+  @override
+  Option<Either<AuthFailure, TokenModel>> get failureOrSuccessOption;
 
   /// Create a copy of SignUpFormState
   /// with the given fields replaced by the non-null parameter values.

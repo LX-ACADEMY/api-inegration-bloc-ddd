@@ -15,6 +15,8 @@ import 'package:todo_app/application/auth/sign_in%20_form/sign_in_form_bloc.dart
     as _i246;
 import 'package:todo_app/application/auth/sign_up_form/bloc/sign_up_form_bloc.dart'
     as _i318;
+import 'package:todo_app/domain/auth/i_auth_repository.dart' as _i1062;
+import 'package:todo_app/infrastructure/auth/auth_repository.dart' as _i125;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -28,7 +30,9 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i246.SignInFormBloc>(() => _i246.SignInFormBloc());
-    gh.factory<_i318.SignUpFormBloc>(() => _i318.SignUpFormBloc());
+    gh.lazySingleton<_i1062.IAuthRepository>(() => _i125.AuthRepository());
+    gh.factory<_i318.SignUpFormBloc>(
+        () => _i318.SignUpFormBloc(gh<_i1062.IAuthRepository>()));
     return this;
   }
 }
