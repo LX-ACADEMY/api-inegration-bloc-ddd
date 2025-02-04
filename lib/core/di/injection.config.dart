@@ -29,8 +29,9 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i246.SignInFormBloc>(() => _i246.SignInFormBloc());
     gh.lazySingleton<_i1062.IAuthRepository>(() => _i125.AuthRepository());
+    gh.factory<_i246.SignInFormBloc>(
+        () => _i246.SignInFormBloc(gh<_i1062.IAuthRepository>()));
     gh.factory<_i318.SignUpFormBloc>(
         () => _i318.SignUpFormBloc(gh<_i1062.IAuthRepository>()));
     return this;
