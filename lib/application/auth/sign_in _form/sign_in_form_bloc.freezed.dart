@@ -495,6 +495,9 @@ abstract class _SignInButtonPressed implements SignInFormEvent {
 mixin _$SignInFormState {
   bool get isloading => throw _privateConstructorUsedError;
   Credential get credential => throw _privateConstructorUsedError;
+  TokenModel? get authToken => throw _privateConstructorUsedError;
+  Option<Either<AuthFailure, TokenModel>> get failureOrSuccessOption =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of SignInFormState
   /// with the given fields replaced by the non-null parameter values.
@@ -509,7 +512,11 @@ abstract class $SignInFormStateCopyWith<$Res> {
           SignInFormState value, $Res Function(SignInFormState) then) =
       _$SignInFormStateCopyWithImpl<$Res, SignInFormState>;
   @useResult
-  $Res call({bool isloading, Credential credential});
+  $Res call(
+      {bool isloading,
+      Credential credential,
+      TokenModel? authToken,
+      Option<Either<AuthFailure, TokenModel>> failureOrSuccessOption});
 
   $CredentialCopyWith<$Res> get credential;
 }
@@ -531,6 +538,8 @@ class _$SignInFormStateCopyWithImpl<$Res, $Val extends SignInFormState>
   $Res call({
     Object? isloading = null,
     Object? credential = null,
+    Object? authToken = freezed,
+    Object? failureOrSuccessOption = null,
   }) {
     return _then(_value.copyWith(
       isloading: null == isloading
@@ -541,6 +550,14 @@ class _$SignInFormStateCopyWithImpl<$Res, $Val extends SignInFormState>
           ? _value.credential
           : credential // ignore: cast_nullable_to_non_nullable
               as Credential,
+      authToken: freezed == authToken
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as TokenModel?,
+      failureOrSuccessOption: null == failureOrSuccessOption
+          ? _value.failureOrSuccessOption
+          : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, TokenModel>>,
     ) as $Val);
   }
 
@@ -563,7 +580,11 @@ abstract class _$$SignInFormStateImplCopyWith<$Res>
       __$$SignInFormStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isloading, Credential credential});
+  $Res call(
+      {bool isloading,
+      Credential credential,
+      TokenModel? authToken,
+      Option<Either<AuthFailure, TokenModel>> failureOrSuccessOption});
 
   @override
   $CredentialCopyWith<$Res> get credential;
@@ -584,6 +605,8 @@ class __$$SignInFormStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isloading = null,
     Object? credential = null,
+    Object? authToken = freezed,
+    Object? failureOrSuccessOption = null,
   }) {
     return _then(_$SignInFormStateImpl(
       isloading: null == isloading
@@ -594,6 +617,14 @@ class __$$SignInFormStateImplCopyWithImpl<$Res>
           ? _value.credential
           : credential // ignore: cast_nullable_to_non_nullable
               as Credential,
+      authToken: freezed == authToken
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as TokenModel?,
+      failureOrSuccessOption: null == failureOrSuccessOption
+          ? _value.failureOrSuccessOption
+          : failureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<AuthFailure, TokenModel>>,
     ));
   }
 }
@@ -602,16 +633,23 @@ class __$$SignInFormStateImplCopyWithImpl<$Res>
 
 class _$SignInFormStateImpl implements _SignInFormState {
   const _$SignInFormStateImpl(
-      {required this.isloading, required this.credential});
+      {required this.isloading,
+      required this.credential,
+      required this.authToken,
+      required this.failureOrSuccessOption});
 
   @override
   final bool isloading;
   @override
   final Credential credential;
+  @override
+  final TokenModel? authToken;
+  @override
+  final Option<Either<AuthFailure, TokenModel>> failureOrSuccessOption;
 
   @override
   String toString() {
-    return 'SignInFormState(isloading: $isloading, credential: $credential)';
+    return 'SignInFormState(isloading: $isloading, credential: $credential, authToken: $authToken, failureOrSuccessOption: $failureOrSuccessOption)';
   }
 
   @override
@@ -622,11 +660,15 @@ class _$SignInFormStateImpl implements _SignInFormState {
             (identical(other.isloading, isloading) ||
                 other.isloading == isloading) &&
             (identical(other.credential, credential) ||
-                other.credential == credential));
+                other.credential == credential) &&
+            const DeepCollectionEquality().equals(other.authToken, authToken) &&
+            (identical(other.failureOrSuccessOption, failureOrSuccessOption) ||
+                other.failureOrSuccessOption == failureOrSuccessOption));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isloading, credential);
+  int get hashCode => Object.hash(runtimeType, isloading, credential,
+      const DeepCollectionEquality().hash(authToken), failureOrSuccessOption);
 
   /// Create a copy of SignInFormState
   /// with the given fields replaced by the non-null parameter values.
@@ -641,12 +683,19 @@ class _$SignInFormStateImpl implements _SignInFormState {
 abstract class _SignInFormState implements SignInFormState {
   const factory _SignInFormState(
       {required final bool isloading,
-      required final Credential credential}) = _$SignInFormStateImpl;
+      required final Credential credential,
+      required final TokenModel? authToken,
+      required final Option<Either<AuthFailure, TokenModel>>
+          failureOrSuccessOption}) = _$SignInFormStateImpl;
 
   @override
   bool get isloading;
   @override
   Credential get credential;
+  @override
+  TokenModel? get authToken;
+  @override
+  Option<Either<AuthFailure, TokenModel>> get failureOrSuccessOption;
 
   /// Create a copy of SignInFormState
   /// with the given fields replaced by the non-null parameter values.
